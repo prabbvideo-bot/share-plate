@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile for neighbors and food establishments",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "accountType": { "type": "string", "enum": ["resident", "restaurant", "mess", "darshini", "sweetstall", "mandi"] },
+        "locality": { "type": "string", "maxLength": 150 },
+        "city": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "bringDabbaDefault": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "accountType", "locality", "createdAt"]
+    },
+    "FoodListing": {
+      "title": "FoodListing",
+      "description": "Surplus food item or community request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["surplus", "request"] },
+        "title": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "posterType": { "type": "string" },
+        "posterName": { "type": "string", "maxLength": 100 },
+        "posterRole": { "type": "string", "maxLength": 100 },
+        "verifiedBusiness": { "type": "boolean" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "category": { "type": "string" },
+        "quantity": { "type": "string" },
+        "quantityRemaining": { "type": "number" },
+        "initialQuantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "locationName": { "type": "string", "maxLength": 200 },
+        "pickupWindow": { "type": "string", "maxLength": 150 },
+        "expiresAt": { "type": "string" },
+        "dietaryTags": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "claimedCount": { "type": "number" },
+        "urgency": { "type": "string" },
+        "bringDabbaRecommended": { "type": "boolean" }
+      },
+      "required": ["id", "type", "title", "posterName", "category", "locationName", "pickupWindow", "createdAt"]
+    },
+    "FoodClaim": {
+      "title": "FoodClaim",
+      "description": "Claim reservation for surplus food item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "listingId": { "type": "string" },
+        "listingTitle": { "type": "string" },
+        "quantity": { "type": "number" },
+        "claimCode": { "type": "string", "maxLength": 20 },
+        "claimedAt": { "type": "string" },
+        "pickupWindow": { "type": "string" },
+        "locationName": { "type": "string" },
+        "posterName": { "type": "string" },
+        "price": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "collected", "cancelled"] }
+      },
+      "required": ["id", "userId", "listingId", "listingTitle", "quantity", "claimCode", "claimedAt", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile records with owner access"
+    },
+    "/listings/{listingId}": {
+      "schema": { "$ref": "#/entities/FoodListing" },
+      "description": "Surplus food and request postings accessible by neighborhood"
+    },
+    "/claims/{claimId}": {
+      "schema": { "$ref": "#/entities/FoodClaim" },
+      "description": "User claims and pickup passes"
+    }
+  }
+}

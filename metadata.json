@@ -1,0 +1,6 @@
+{
+  "name": "SharePlate India · Neighborhood Food & Tiffin Sharing",
+  "description": "A hyper-local bulletin board where bhojanalayas, darshinis, dhabas, and neighbors post surplus food for free or at a discount, visible within a 1-km radius.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
