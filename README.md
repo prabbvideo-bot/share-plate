@@ -82,7 +82,7 @@ This repository includes all required configuration files for Render, including 
    - **Service Type**: Web Service
    - **Name**: `shareplate-india`
    - **Environment**: `Node`
-   - **Build Command**: `npm install --legacy-peer-deps && npm run build`
+   - **Build Command**: `npm install --legacy-peer-deps --include=optional && npm install --no-save @rolldown/binding-linux-x64-gnu && npm run build`
    - **Start Command**: `npm run start`
    - **Health Check**: `/healthz`
 6. Click **Apply**. Your app will build, pass health checks, and go live with a free HTTPS URL!
@@ -100,7 +100,7 @@ If you prefer to configure manually on Render without Blueprints:
    - **Region**: `Singapore` (recommended for India users) or closest region
    - **Branch**: `main`
    - **Runtime**: `Node`
-   - **Build Command**: `npm install --legacy-peer-deps && npm run build`
+   - **Build Command**: `npm install --legacy-peer-deps --include=optional && npm install --no-save @rolldown/binding-linux-x64-gnu && npm run build`
    - **Start Command**: `npm run start`
    - **Instance Type**: `Free`
 4. Expand **Advanced**:
@@ -118,7 +118,7 @@ If you wish to host the app as a pure client-side Static Site on Render:
 1. Click **New +** > **Static Site**.
 2. Connect your repository.
 3. Configure:
-   - **Build Command**: `npm install --legacy-peer-deps && npm run build`
+   - **Build Command**: `npm install --legacy-peer-deps --include=optional && npm install --no-save @rolldown/binding-linux-x64-gnu && npm run build`
    - **Publish Directory**: `dist`
 4. In the **Redirects / Rewrites** tab, add an SPA rewrite rule:
    - **Source**: `/*`
